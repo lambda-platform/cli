@@ -107,14 +107,8 @@ class LambdaGo extends Generator {
             this.templatePath('public'),
             path.join(srcDir, 'public')
         );
-        this.fs.copy(
-            this.templatePath('models'),
-            path.join(srcDir, 'public')
-        );
-        this.fs.copy(
-            this.templatePath('appAdmin'),
-            path.join(srcDir, 'public')
-        );
+
+
 
 
         let tmplContext = {
