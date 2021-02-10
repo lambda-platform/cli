@@ -1,6 +1,7 @@
 {
     "name": "@lambda-platform/cli",
     "version": "0.0.1",
+    "description": "lambda cli",
     "main": "./generators/app/index.js",
     "keywords": [
         "yeoman-generator",
@@ -10,6 +11,15 @@
     "bin": {
         "lambda": "./bin/cli.js"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lambda-platform/cli"
+    },
+    "bugs": {
+        "url": "https://github.com/lambda-platform/cli/issues"
+    },
+    "homepage": "https://github.com/lambda-platform/clio#readme",
+    "license": "MIT",
     "dependencies": {
         "chalk": "^4.1.0",
         "yeoman-environment": "^2.10.3",
@@ -17,5 +27,8 @@
         "cross-spawn": "^7.0.3",
         "minimist": "^1.2.5",
         "update-notifier": "^5.0.1"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
