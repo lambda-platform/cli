@@ -1,0 +1,21 @@
+{
+    "name": "@lambda-platform/cli",
+    "version": "0.0.1",
+    "main": "./generators/app/index.js",
+    "keywords": [
+        "yeoman-generator",
+        "lambda generator",
+        "lambda cli"
+    ],
+    "bin": {
+        "lambda": "./bin/cli.js"
+    },
+    "dependencies": {
+        "chalk": "^4.1.0",
+        "yeoman-environment": "^2.10.3",
+        "yeoman-generator": "4.12.0",
+        "cross-spawn": "^7.0.3",
+        "minimist": "^1.2.5",
+        "update-notifier": "^5.0.1"
+    }
+}

@@ -1,0 +1,11 @@
+.idea
+/models
+/public
+server_config
+.DS_Store
+*.DS_Store
+graphql
+tmp
+go.sum
+*.toml
+
