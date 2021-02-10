@@ -37,7 +37,7 @@ class LambdaCLI {
         }
 
         if (this._options.version) {
-            return console.log("@lambda-platform/cli" + pkg.version);
+            return console.log("@lambda-platform/cli: " + pkg.version);
         }
 
         switch (this._args[0]) {
