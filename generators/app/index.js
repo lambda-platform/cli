@@ -29,7 +29,8 @@ class LambdaGo extends Generator {
 
         if(this.options["projectName"]){
             this.projectName = this.options["projectName"][0].replace(/\s+/g, '-').toLowerCase();
-            this.serviceName = this.options["projectName"][0].replace(/\s+/g, '-').toLowerCase();
+            // this.serviceName = this.options["projectName"][0].replace(/\s+/g, '-').toLowerCase();
+            this.serviceName = "app";
 
             return this.prompt(prompts).then(props => {
 
@@ -44,16 +45,12 @@ class LambdaGo extends Generator {
                 name: 'projectName',
                 message: 'Please insert Project?',
                 default: 'example'
-            },{
-                type: 'input',
-                name: 'appName',
-                message: 'Please insert app name?',
-                default: 'app'
             }, prompts[0]]
         }
         return this.prompt(prompts).then(props => {
             this.projectName = props.projectName.replace(/\s+/g, '-').toLowerCase();
-            this.serviceName = props.appName.replace(/\s+/g, '-').toLowerCase();
+            // this.serviceName = props.appName.replace(/\s+/g, '-').toLowerCase();
+            this.serviceName = "app";
             this.useAppAdmin = props.useAppAdmin.replace(/\s+/g, '-').toLowerCase();
             this.secretKey = getKey(34)
 
