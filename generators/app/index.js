@@ -173,6 +173,12 @@ class LambdaGo extends Generator {
             path.join(serviceDir, 'handlers'),
             tmplContext
         );
+
+        this.fs.copyTpl(
+            this.templatePath('exampleService/middlewares'),
+            path.join(serviceDir, 'middlewares'),
+            tmplContext
+        );
         if(this.useAppAdmin == "yes") {
             this.fs.copyTpl(
                 this.templatePath('appAdmin/admin.go'),

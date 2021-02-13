@@ -1,9 +1,7 @@
 package main
 
 import (
-
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 	/*
 		|----------------------------------------------
 		| Generated Models
@@ -42,20 +40,6 @@ func main() {
 		//Back-End permission validation
 		KrudWithPermission:true,
 	})
-	/*
-		|----------------------------------------------
-		| Echo useful MIDDLEWARES
-		|----------------------------------------------
-	*/
-	lambda.Echo.Use(middleware.Secure())
-	lambda.Echo.Use(middleware.Recover())
-	//App.Echo.Use(middleware.Logger())
-	lambda.Echo.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins:     []string{"*", "http://localhost:*","http://127.0.0.1:*"},
-		AllowCredentials: true,
-		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, "X-Requested-With", "x-requested-with"},
-		AllowMethods:     []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE, echo.OPTIONS},
-	}))
 
 	/*
 		|----------------------------------------------
