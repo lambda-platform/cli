@@ -2,7 +2,7 @@ package <%= serviceName %>
 
 import (
 	"github.com/labstack/echo/v4"
-		"<%= projectName %>/<%= serviceName %>/middlewares"
+	"<%= projectName %>/<%= serviceName %>/middlewares"
 	"<%= projectName %>/<%= serviceName %>/routes"
 )
 
