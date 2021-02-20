@@ -43,17 +43,20 @@ class LambdaCLI {
         switch (this._args[0]) {
             case 'c':
             case 'create':
-                return this.generate(this._args.slice(1), this._options);
+                return this.generate(this._args.slice(1), this._options, false);
+            case 'c-pro':
+            case 'create-pro':
+                return this.generate(this._args.slice(1), this._options, true);
             default:
                 return this._help();
         }
     }
 
-    generate(projectName, options) {
+    generate(projectName, options, pro) {
         options = options || {};
         console.log(chalk.cyan(`Lambda CLI`))
 
-        env.run('@lambda-platform/go', {"projectName": projectName}, function () {
+        env.run('@lambda-platform/go', {"projectName": projectName, "pro": pro == true  ? "yes" : "no"}, function () {
             console.log("Starter app generated")
         });
     }
@@ -69,9 +72,11 @@ Options:
 
 Commands:
   ${chalk.blueBright('lambda c, create [options] <app-name> ')}  create a new project powered by lambda-cli
+  ${chalk.blueBright('lambda c-pro, create-pro [options] <app-name> ')}  create a new Pro Project powered by lambda-cli
 
 Examples:
   ${chalk.blueBright('lambda create my-app, lambda c my-app')}
+  ${chalk.blueBright('lambda create-pro my-app, lambda c my-app')}
 `;
         console.log(detailedHelp)
     }

@@ -1,0 +1,54 @@
+module <%= projectName %>
+
+go 1.15
+
+require (
+	github.com/99designs/gqlgen v0.13.0
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/foolin/goview v0.3.0
+	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/gofiber/fiber v1.14.6 // indirect
+	github.com/gorilla/websocket v1.4.2
+	github.com/grokify/html-strip-tags-go v0.0.1 // indirect
+	github.com/kr/pretty v0.1.0 // indirect
+	github.com/labstack/echo/v4 v4.1.17
+	github.com/lambda-platform/agent v0.1.11
+	github.com/lambda-platform/arcGIS v0.0.1
+	github.com/lambda-platform/chart v0.0.1
+	github.com/lambda-platform/crudlogger v0.0.1
+	github.com/lambda-platform/dataanalytic v0.0.1
+	github.com/lambda-platform/graphql v0.0.1
+	github.com/lambda-platform/krud v0.1.4
+	github.com/lambda-platform/lambda v0.1.14
+	github.com/lambda-platform/moqup v0.0.1
+	github.com/lambda-platform/notify v0.0.1
+	github.com/thedevsaddam/govalidator v1.9.10
+	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
+)
+
+replace github.com/lambda-platform/lambda v0.1.14 => ../../go/lambda
+
+replace github.com/lambda-platform/agent v0.1.9 => ../../go/agent
+
+replace github.com/lambda-platform/puzzle v0.1.4 => ../../go/puzzle
+
+replace github.com/lambda-platform/krud v0.1.2 => ../../go/krud
+
+replace github.com/lambda-platform/dataform v0.1.1 => ../../go/dataform
+
+replace github.com/lambda-platform/datagrid v0.1.1 => ../../go/datagrid
+
+//PRO MODULES
+replace github.com/lambda-platform/crudlogger v0.0.1 => ../../go/crudlogger
+
+replace github.com/lambda-platform/notify v0.0.1 => ../../go/notify
+
+replace github.com/lambda-platform/arcGIS v0.0.1 => ../../go/arcGIS
+
+replace github.com/lambda-platform/graphql v0.0.1 => ../../go/graphql
+
+replace github.com/lambda-platform/dataanalytic v0.0.1 => ../../go/dataanalytic
+
+replace github.com/lambda-platform/chart v0.0.1 => ../../go/chart
+
+replace github.com/lambda-platform/moqup v0.0.1 => ../../go/moqup

@@ -11,13 +11,13 @@ import (
 
 func Web(e *echo.Echo) {
 
-	mix := utils.FrontMix("front-end-path/manifest.json")
+    mix := utils.FrontMix("assets/app/manifest.json")
 	viewMiddleware := echoview.NewMiddleware(goview.Config{
 		Root:      "<%= serviceName %>/templates", //template root path
 		Extension: ".html",
 		Funcs: template.FuncMap{
 			"data": handlers.HomeData,
-			"mix": func(index string) string {
+			"assets": func(index string) string {
 				return utils.CallMix(index, mix)
 			},
 		},

@@ -9,6 +9,6 @@ func main() {
 
 	dir, _ := os.Getwd()
 
-	modelinit.ModelInit(dir, "<%= projectName %>")
+	initModel.ModelInit(dir, "<%= projectName %>")
 
 }

@@ -8,11 +8,11 @@
     <title>{{.title}}</title>
     <meta name="csrf-token" content={{index .csrfToken}}>
     <link href="{{.favicon}}" rel="icon"/>
-    <link rel="stylesheet" href="/fonts/roboto/roboto.css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic">
-    <link rel="stylesheet" href="{{index .mix "/lambda2/vendor.css"}}">
-    <link rel="stylesheet" href="{{index .mix "/lambda2/paper.css"}}">
-    <link rel="stylesheet" href="/fonts/themify/themify-icons.css">
-    <link rel="stylesheet" href="{{index .mix "/lambda2/dataform.css"}}">
+    <link rel="stylesheet" href="/assets/lambda/fonts/roboto/roboto.css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/vendor.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/paper.css"}}">
+    <link rel="stylesheet" href="/assets/lambda/fonts/themify/themify-icons.css">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/dataform.css"}}">
     <style>
         #loader-wrapper {
             position: fixed;
@@ -25,7 +25,7 @@
             overflow: hidden;
         }
         #loader {
-            background: url(/tsahim/images/1.gif);
+
             width: 64px;
             height: 64px;
             position: relative;
@@ -44,23 +44,23 @@
     </div>
 </div>
 
-<script src="{{index .mix "/lambda2/manifest.js"}}"></script>
-<script src="{{index .mix "/lambda2/vendor.js"}}"></script>
-<script src="{{index .mix "/lambda2/paper.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/manifest.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/vendor.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/paper.js"}}"></script>
 <script>
-    window.app_logo = "/geosystem/logo.png";
+window.app_logo = {{.logo_light}};
 </script>
 
 <script>
     window.init = {
         data_form_custom_elements: {{.data_form_custom_elements}},
-        schema_id: {{.schema_id}},
-        id: {{.id}},
-        hidemap: {{.hidemap}},
+    schema_id: {{.schema_id}},
+    id: {{.id}},
+    hidemap: {{.hidemap}},
     };
 </script>
 
-<script src="{{index .mix "/lambda2/dataform.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/dataform.js"}}"></script>
 
 
 

@@ -1,0 +1,12 @@
+sudo rm -R ./graph
+sudo rm -R ./models
+echo "INIT START"
+sudo mkdir graph
+sudo mkdir models
+sudo chmod -R 777 ./graph
+sudo chmod -R 777 ./models
+go run init/init.go
+sudo chmod -R 777 ./graph
+sudo chmod -R 777 ./models
+echo "Ready"
+fresh

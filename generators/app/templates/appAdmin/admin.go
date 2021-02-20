@@ -17,7 +17,7 @@ func Set(e *echo.Echo, UseNotify bool) {
 
 	/* REGISTER VIEWS */
 	templates := utils.GetTemplates(e)
-	templates["control.html"] = template.Must(template.ParseFiles("appAdmin/templates/control.html"))
+	templates["admin.html"] = template.Must(template.ParseFiles("appAdmin/templates/admin.html"))
 	templates["form.html"] = template.Must(template.ParseFiles("appAdmin/templates/form.html"))
 
 	/* ROUTES */

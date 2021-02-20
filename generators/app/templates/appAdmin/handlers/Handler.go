@@ -50,7 +50,7 @@ func Index(UseNotify bool) echo.HandlerFunc {
 		FirebaseConfig := config.LambdaConfig.Notify.FirebaseConfig
 		//csrfToken := c.Get(middleware.DefaultCSRFConfig.ContextKey).(string)
 		csrfToken := ""
-		return c.Render(http.StatusOK, "control.html", map[string]interface{}{
+		return c.Render(http.StatusOK, "admin.html", map[string]interface{}{
 			"UseNotify":       UseNotify,
 			"title":       config.LambdaConfig.Title,
 			"extraStyles":       config.LambdaConfig.ControlPanel.ExtraStyles,

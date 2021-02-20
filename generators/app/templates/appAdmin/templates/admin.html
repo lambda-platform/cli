@@ -1,0 +1,85 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="csrf-token" content={{index .csrfToken}}>
+    <title>{{.title}}</title>
+    <link href="{{.favicon}}" rel="icon"/>
+    <link rel="stylesheet" href="/assets/lambda/fonts/roboto/roboto.css?family=Roboto:400,300,100,100italic,300italic,400italic,700,700italic">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/vendor.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/paper.css"}}">
+    <link rel="stylesheet" href="/assets/lambda/fonts/themify/themify-icons.css">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/moqup.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/dataform.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/datagrid.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/chart.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/krud.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/agent.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/puzzle.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/lambda/css/analytic.css"}}">
+    <link rel="stylesheet" href="{{index .mix "/assets/appAdmin/css/appAdmin.css"}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons"/>
+    {{range $extraStyle := .extraStyles}}
+    <link rel="stylesheet" href="{{ $extraStyle }}">
+    {{end }}
+</head>
+<body>
+<div id="app" class="app-wrapper">
+</div>
+
+<script src="{{index .mix "/assets/lambda/js/manifest.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/vendor.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/datagrid-vendor.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/paper.js"}}"></script>
+
+{{range $extraScript := .extraScripts}}
+<script src="{{$extraScript}}"></script>
+{{end }}
+<script>
+    window.app_logo = {{.logo_light}};
+</script>
+<script type="text/javascript" src="/vendor/echart/echarts-en.js"></script>
+<script type="text/javascript" src="/vendor/ckeditor/ckeditor.js"></script>
+<script>
+    window.init = {
+        logo: {{.logo}},
+    themeColors: {{.themeColors}},
+    themeMode: {{.themeMode}},
+    primaryColor: {{.primaryColor}},
+    logo_dark: {{.logo_dark}},
+    logo_light: {{.logo_light}},
+    brandBtnUrl: {{.brandBtnUrl}},
+    user: {{.User}},
+    permissions: {{.permissions}},
+    cruds: {{.cruds}},
+    menu: {{.menu}},
+    guide: {{.guide}},
+    withCrudLog: {{.withCrudLog}},
+    crud_mode: 'refresh',
+        data_form_custom_elements: {{.data_form_custom_elements}},
+    firebase_config: {{.firebase_config}}
+    };
+</script>
+<script src="{{index .mix "/assets/lambda/js/moqup.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/dataform.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/datagrid-vendor.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/datagrid.js"}}"></script>
+
+<script src="{{index .mix "/assets/lambda/js/chart.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/krud.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/agent.js"}}"></script>
+
+<script src="{{index .mix "/assets/lambda/js/analytic.js"}}"></script>
+{{ if .UseNotify }}
+<script src="{{index .mix "/assets/lambda/js/notification.js"}}"></script>
+{{ end }}
+<script src="{{index .mix "/assets/lambda/js/page.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/page-nav.js"}}"></script>
+
+<script src="{{index .mix "/assets/appAdmin/js/appAdmin.js"}}"></script>
+
+</body>
+</html>
