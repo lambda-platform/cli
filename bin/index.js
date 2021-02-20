@@ -76,7 +76,7 @@ Commands:
 
 Examples:
   ${chalk.blueBright('lambda create my-app, lambda c my-app')}
-  ${chalk.blueBright('lambda create-pro my-app, lambda c my-app')}
+  ${chalk.blueBright('lambda create-pro my-app, lambda c-pro my-app')}
 `;
         console.log(detailedHelp)
     }
