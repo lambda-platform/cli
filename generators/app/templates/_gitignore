@@ -1,11 +1,18 @@
 .idea
-/models
-/public
+models
 server_config
 .DS_Store
 *.DS_Store
 graphql
 tmp
+.env
 go.sum
 *.toml
+node_modules
 
+public/assets/lambda/js
+public/assets/lambda/css
+public/assets/appAdmin/css
+public/assets/appAdmin/js
+public/assets/app
+public/mix-manifest.json
