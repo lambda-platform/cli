@@ -1,9 +1,11 @@
 .idea
-models
 server_config
 .DS_Store
 *.DS_Store
-graphql
+app/graph
+app/models/form
+app/models/grid
+app/models/db_schema.json
 tmp
 .env
 go.sum
@@ -12,7 +14,7 @@ node_modules
 
 public/assets/lambda/js
 public/assets/lambda/css
-public/assets/appAdmin/css
-public/assets/appAdmin/js
+public/assets/admin/css
+public/assets/admin/js
 public/assets/app
 public/mix-manifest.json

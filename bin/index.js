@@ -44,7 +44,7 @@ class LambdaCLI {
             case 'c':
             case 'create':
                 return this.generate(this._args.slice(1), this._options, false);
-            case 'c-pro':
+            case 'pro':
             case 'create-pro':
                 return this.generate(this._args.slice(1), this._options, true);
             default:
@@ -72,11 +72,11 @@ Options:
 
 Commands:
   ${chalk.blueBright('lambda c, create [options] <app-name> ')}  create a new project powered by lambda-cli
-  ${chalk.blueBright('lambda c-pro, create-pro [options] <app-name> ')}  create a new Pro Project powered by lambda-cli
+  ${chalk.blueBright('lambda pro, create-pro [options] <app-name> ')}  create a new Pro Project powered by lambda-cli
 
 Examples:
   ${chalk.blueBright('lambda create my-app, lambda c my-app')}
-  ${chalk.blueBright('lambda create-pro my-app, lambda c-pro my-app')}
+  ${chalk.blueBright('lambda create-pro my-app, lambda pro my-app')}
 `;
         console.log(detailedHelp)
     }

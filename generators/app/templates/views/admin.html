@@ -1,0 +1,49 @@
+{{define "meta"}}
+
+{{end}}
+{{define "styles"}}
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="/assets/lambda/fonts/flaticons/flaticons.css">
+<link rel="stylesheet" href="/assets/lambda/fonts/themify/themify-icons.css">
+<link rel="stylesheet" href="{{index .mix "/assets/lambda/css/moqup.css"}}">
+<link rel="stylesheet" href="{{index .mix "/assets/lambda/css/dataform.css"}}">
+<link rel="stylesheet" href="{{index .mix "/assets/lambda/css/datagrid.css"}}">
+<link rel="stylesheet" href="{{index .mix "/assets/lambda/css/chart.css"}}">
+<link rel="stylesheet" href="{{index .mix "/assets/lambda/css/agent.css"}}">
+<link rel="stylesheet" href="{{index .mix "/assets/lambda/css/krud.css"}}">
+<link rel="stylesheet" href="{{index .mix "/assets/admin/css/app.css"}}">
+{{end}}
+{{define "app"}}
+<div id="app" class="app-wrapper"></div>
+{{end}}
+{{define "scripts"}}
+<script>
+    window.logo = {{ .logo }};
+    window.init = {
+        user: {{.User}},
+    data_form_custom_elements: {{.data_form_custom_elements}},
+    firebase_config: {{.firebase_config}},
+    permissions: {{.permissions}},
+    cruds: {{.cruds}},
+    menu: {{.menu}},
+    crud_mode: 'refresh',
+    };
+</script>
+<script type="text/javascript" src="/vendor/echart/echarts-en.js"></script>
+<script type="text/javascript" src="/vendor/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/vendor/echart/theme/macarons.js"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDJZAnIp-j3EH7HxB8wnBhszawu_yqtSsc&language=en"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-messaging.js"></script>
+<script src="{{index .mix "/assets/lambda/js/moqup.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/dataform.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/datagrid-vendor.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/datagrid.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/chart.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/krud.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/agent.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/page.js"}}"></script>
+<script src="{{index .mix "/assets/lambda/js/page-nav.js"}}"></script>
+<script src="{{index .mix "/assets/admin/js/app.js"}}"></script>
+{{end}}

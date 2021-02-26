@@ -20,23 +20,21 @@ class LambdaGo extends Generator {
 
         let cb = this.async();
 
-        let prompts = [{
-            type: 'input',
-            name: 'useAppAdmin',
-            message: 'are you want example "app admin"?',
-            default: 'yes'
-        }];
+        let prompts = [
+            // {
+            //     type: 'input',
+            //     name: 'useAppAdmin',
+            //     message: 'are you want example "app admin"?',
+            //     default: 'yes'
+            // }
+        ];
 
         if(this.options["projectName"]){
             this.projectName = this.options["projectName"][0].replace(/\s+/g, '-').toLowerCase();
-
             this.pro = this.options["pro"];
-            // this.serviceName = this.options["projectName"][0].replace(/\s+/g, '-').toLowerCase();
-            this.serviceName = "app";
 
             return this.prompt(prompts).then(props => {
 
-                this.useAppAdmin = props.useAppAdmin.replace(/\s+/g, '-').toLowerCase();
                 this.secretKey = getKey(34)
 
                 cb()
@@ -51,10 +49,6 @@ class LambdaGo extends Generator {
         }
         return this.prompt(prompts).then(props => {
             this.projectName = props.projectName.replace(/\s+/g, '-').toLowerCase();
-            this.pro = props.pro.replace(/\s+/g, '-').toLowerCase();
-            // this.serviceName = props.appName.replace(/\s+/g, '-').toLowerCase();
-            this.serviceName = "app";
-            this.useAppAdmin = props.useAppAdmin.replace(/\s+/g, '-').toLowerCase();
             this.secretKey = getKey(34)
 
             cb()
@@ -66,22 +60,12 @@ class LambdaGo extends Generator {
         console.log("Creating project folders");
 
         let srcDir = this.destinationPath(path.join('', this.projectName));
-        let serviceDir = this.destinationPath(path.join(this.projectName, this.serviceName));
-        let appAdminDir = this.destinationPath(path.join(this.projectName, "appAdmin"));
-        let modelsDir = this.destinationPath(path.join(this.projectName, "models"));
+
         let projectPublicDir = srcDir+"/public/";
-        let initDir = srcDir+"/init";
-
-
 
         mkdir.sync(srcDir);
         mkdir.sync(projectPublicDir);
-        mkdir.sync(serviceDir);
-        mkdir.sync(initDir);
-        if(this.useAppAdmin == "yes"){
-            mkdir.sync(appAdminDir);
-        }
-        mkdir.sync(modelsDir);
+
 
 
         this.fs.copy(
@@ -93,12 +77,6 @@ class LambdaGo extends Generator {
             path.join(srcDir, 'README.md')
         );
 
-
-
-        // this.fs.copy(
-        //     this.templatePath('init'),
-        //     path.join(srcDir, 'init')
-        // );
         this.fs.copy(
             this.templatePath('server_config'),
             path.join(srcDir, 'server_config')
@@ -107,13 +85,17 @@ class LambdaGo extends Generator {
             this.templatePath('public'),
             path.join(srcDir, 'public')
         );
-
-
-
+        this.fs.copy(
+            this.templatePath('assets'),
+            path.join(srcDir, 'assets')
+        );
+        this.fs.copy(
+            this.templatePath('database'),
+            path.join(srcDir, 'database')
+        );
 
         let tmplContext = {
             projectName: this.projectName,
-            serviceName: this.serviceName,
             secretKey: this.secretKey,
         };
         this.fs.copyTpl(
@@ -131,41 +113,17 @@ class LambdaGo extends Generator {
             this.templatePath('_editorconfig'),
             path.join(srcDir, '.editorconfig'),
         );
-        if(this.pro == "yes"){
-            if(this.useAppAdmin == "yes"){
-                this.fs.copyTpl(
-                    this.templatePath('main.go_pro'),
-                    path.join(srcDir, 'main.go'),
-                    tmplContext
-                );
-            } else {
-                this.fs.copyTpl(
-                    this.templatePath('main.go_pro_without_admin'),
-                    path.join(srcDir, 'main.go'),
-                    tmplContext
-                );
-            }
-        } else {
-            if(this.useAppAdmin == "yes"){
-                this.fs.copyTpl(
-                    this.templatePath('main.go'),
-                    path.join(srcDir, 'main.go'),
-                    tmplContext
-                );
-            } else {
-                this.fs.copyTpl(
-                    this.templatePath('main_witihout_admin.go'),
-                    path.join(srcDir, 'main.go'),
-                    tmplContext
-                );
-            }
-        }
+        this.fs.copyTpl(
+            this.templatePath('main.go'),
+            path.join(srcDir, 'main.go'),
+            tmplContext
+        );
 
 
 
         this.fs.copyTpl(
-            this.templatePath('webpack.appAdmin.js'),
-            path.join(srcDir, 'webpack.appAdmin.js'),
+            this.templatePath('webpack.app.js'),
+            path.join(srcDir, 'webpack.app.js'),
         );
 
         this.fs.copyTpl(
@@ -189,10 +147,20 @@ class LambdaGo extends Generator {
                 path.join(srcDir, 'go.mod'),
                 tmplContext
             );
+            this.fs.copyTpl(
+                this.templatePath('start.sh_pro'),
+                path.join(srcDir, 'start.sh'),
+                tmplContext
+            );
         } else {
             this.fs.copyTpl(
                 this.templatePath('go.mod'),
                 path.join(srcDir, 'go.mod'),
+                tmplContext
+            );
+            this.fs.copyTpl(
+                this.templatePath('start.sh'),
+                path.join(srcDir, 'start.sh'),
                 tmplContext
             );
         }
@@ -204,110 +172,36 @@ class LambdaGo extends Generator {
         );
 
         if(this.pro == "yes") {
+
             this.fs.copyTpl(
-                this.templatePath('init/init.go_pro'),
-                path.join(initDir, 'init.go'),
-                tmplContext
-            );
-            this.fs.copyTpl(
-                this.templatePath('start.sh_pro'),
-                path.join(srcDir, 'start.sh'),
+                this.templatePath('bootstrap_pro'),
+                path.join(srcDir, 'bootstrap'),
                 tmplContext
             );
         } else {
             this.fs.copyTpl(
-                this.templatePath('init/init.go'),
-                path.join(initDir, 'init.go'),
-                tmplContext
-            );
-            this.fs.copyTpl(
-                this.templatePath('start.sh'),
-                path.join(srcDir, 'start.sh'),
+                this.templatePath('bootstrap'),
+                path.join(srcDir, 'bootstrap'),
                 tmplContext
             );
         }
-
         this.fs.copyTpl(
-            this.templatePath('exampleService/app.go'),
-            path.join(serviceDir, 'app.go'),
+            this.templatePath('routes'),
+            path.join(srcDir, 'routes'),
+            tmplContext
+        );
+        this.fs.copyTpl(
+            this.templatePath('views'),
+            path.join(srcDir, 'views'),
+            tmplContext
+        );
+        this.fs.copyTpl(
+            this.templatePath('app'),
+            path.join(srcDir, 'app'),
             tmplContext
         );
 
-        this.fs.copyTpl(
-            this.templatePath('exampleService/handlers'),
-            path.join(serviceDir, 'handlers'),
-            tmplContext
-        );
 
-        this.fs.copyTpl(
-            this.templatePath('exampleService/middlewares'),
-            path.join(serviceDir, 'middlewares'),
-            tmplContext
-        );
-        if(this.useAppAdmin == "yes") {
-            this.fs.copyTpl(
-                this.templatePath('appAdmin/admin.go'),
-                path.join(appAdminDir, 'admin.go'),
-                tmplContext
-            );
-            this.fs.copyTpl(
-                this.templatePath('appAdmin/handlers'),
-                path.join(appAdminDir, 'handlers'),
-                tmplContext
-            );
-            this.fs.copyTpl(
-                this.templatePath('appAdmin/templates'),
-                path.join(appAdminDir, 'templates'),
-                tmplContext
-            );
-        }
-
-        this.fs.copyTpl(
-            this.templatePath('models/form'),
-            path.join(modelsDir, 'form'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('models/grid'),
-            path.join(modelsDir, 'grid'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('models/form/caller'),
-            path.join(modelsDir, 'form/caller'),
-            tmplContext
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('models/form/validationCaller'),
-            path.join(modelsDir, 'form/validationCaller'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('models/form/validations'),
-            path.join(modelsDir, 'form/validations'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('models/grid/caller'),
-            path.join(modelsDir, 'grid/caller'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('exampleService/models'),
-            path.join(serviceDir, 'models'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('exampleService/routes'),
-            path.join(serviceDir, 'routes'),
-            tmplContext
-        );
-        this.fs.copyTpl(
-            this.templatePath('exampleService/templates'),
-            path.join(serviceDir, 'templates'),
-            tmplContext
-        );
 
 
     }

@@ -33,7 +33,7 @@ mix.webpackConfig({
             path.resolve(`${lambdaRoot}/appAdmin/`, 'node_modules'),
         ],
         alias: {
-            dataform_custom: path.resolve(__dirname, dataform_custom),
+            dataform_custom: path.resolve(__dirname, "assets/dataform_custom"),
             vue$: "vue/dist/vue.common.js",
         },
         extensions: ["*", ".js", ".ts", ".vue", ".json"],
@@ -89,9 +89,8 @@ mix.extract(
     .mergeManifest();
 
 const compileModules = () => {
-
-    mix.js(lambdaRoot+"/appAdmin/index.js", "public/assets/appAdmin/js/appAdmin.js").vue();
-    mix.sass(lambdaRoot+"/appAdmin/scss/style.scss", "public/assets/appAdmin/css/appAdmin.css");
+    mix.js("assets/admin/js/index.js", "public/assets/admin/js/app.js").vue();
+    mix.sass("assets/admin/scss/style.scss", "public/assets/admin/css/app.css");
 
     mix
         .js(`${lambdaRoot}/puzzle/src/index.js`, `public/assets/lambda/js/puzzle.js`).vue()
@@ -122,6 +121,15 @@ const compileModules = () => {
 
         .js(`${lambdaRoot}/moqup/src/index.js`, `public/assets/lambda/js/moqup.js`).vue()
         .sass(`${lambdaRoot}/moqup/src/scss/style.scss`, `public/assets/lambda/css/moqup.css`)
+
+         .js(`${lambdaRoot}/chart/src/index.js`, "public/assets/lambda/js/chart.js").vue()
+         .sass(`${lambdaRoot}/chart/src/scss/style.scss`, "public/assets/lambda/css/chart.css")
+
+        .js(`${lambdaRoot}/notify/src/index.js`, `public/assets/lambda/js/notification.js`).vue()
+
+        // .js("@lambda/logger/assets/index.js", "public/assets/lambda/logger.js")
+        // .sass("@lambda/logger/assets/scss/logger.scss", "public/assets/lambda/logger.css")
+
 
 
 

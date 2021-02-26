@@ -100,7 +100,7 @@
             "publicKey": ""
         },
         "serverKey": "",
-        "sound":"/lambda2/notification.mp3",
+        "sound":"/assets/lambda/notification.mp3",
         "icon":""
     }
 }

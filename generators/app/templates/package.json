@@ -6,7 +6,6 @@
         "development": "mix",
         "start": "mix watch",
         "lstart": "cross-env process.env.section=lambda mix watch",
-        "adminstart": "cross-env process.env.section=admin mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "lhot": "cross-env process.env.section=lambda mix watch --hot",
