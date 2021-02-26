@@ -10,7 +10,8 @@ Options:<br/>
 
 Commands:<br/>
   `lambda c, create [options] <app-name>`   create a new project powered by lambda-cli
+  `lambda pro, create-pro [options] <app-name>`   create a new Pro Project powered by lambda-cli
 
 Examples:<br/>
-  `lambda create my-app, lambda c my-app`
+  `lambda create my-app, lambda c my-app, lambda create-pro my-app, lambda pro myapp`
 
