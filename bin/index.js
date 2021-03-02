@@ -10,11 +10,12 @@ class LambdaCLI {
     constructor(args) {
         this._args = args;
         this._options = minimist(args, {
-            boolean: ['help', 'version'],
+            boolean: ['help', 'version', 'dev'],
             string: [''],
             alias: {
                 h: 'help',
-                v: 'version'
+                v: 'version',
+                d: 'dev',
             }
         });
         // this._config = new Conf({
@@ -69,6 +70,7 @@ Usage: lambda <command> [options]
 Options:
   ${chalk.blueBright('-v, --version')}                 output the version number
   ${chalk.blueBright('-h, --help ')}                   output usage information
+  ${chalk.blueBright('-d, --dev ')}                   install front package and public modules from locale path
 
 Commands:
   ${chalk.blueBright('lambda c, create [options] <app-name> ')}  create a new project powered by lambda-cli
