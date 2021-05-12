@@ -13,7 +13,7 @@ require (
 
 	github.com/lambda-platform/crudlogger v0.0.1
 	github.com/lambda-platform/notify v0.0.1
-	github.com/lambda-platform/arcGIS v0.0.1
+//	github.com/lambda-platform/arcGIS v0.0.1
 	github.com/lambda-platform/graphql v0.0.1
 	github.com/lambda-platform/dataanalytic v0.0.1
 	github.com/lambda-platform/chart v0.0.1
@@ -31,7 +31,7 @@ replace github.com/lambda-platform/datagrid v0.0.1 => ../../go/datagrid
 //PRO MODULES
 replace github.com/lambda-platform/crudlogger v0.0.1 => ../../go/crudlogger
 replace github.com/lambda-platform/notify v0.0.1 => ../../go/notify
-replace github.com/lambda-platform/arcGIS v0.0.1 => ../../go/arcGIS
+//replace github.com/lambda-platform/arcGIS v0.0.1 => ../../go/arcGIS
 replace github.com/lambda-platform/graphql v0.0.1 => ../../go/graphql
 replace github.com/lambda-platform/dataanalytic v0.0.1 => ../../go/dataanalytic
 replace github.com/lambda-platform/chart v0.0.1 => ../../go/chart
