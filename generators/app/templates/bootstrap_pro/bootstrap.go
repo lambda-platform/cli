@@ -5,7 +5,7 @@ import (
     "<%= projectName %>/app/models/form/validationCaller"
     gridCaller "<%= projectName %>/app/models/grid/caller"
     "github.com/labstack/echo/v4"
-    "github.com/lambda-platform/arcGIS"
+    //"github.com/lambda-platform/arcGIS"
     "github.com/lambda-platform/chart"
     /*
     	|----------------------------------------------
@@ -25,7 +25,7 @@ import (
     	|----------------------------------------------
     */
     "github.com/lambda-platform/crudlogger"
-    "github.com/lambda-platform/dataanalytic"
+    //"github.com/lambda-platform/dataanalytic"
     "github.com/lambda-platform/moqup"
     "github.com/lambda-platform/notify"
     /*
@@ -67,7 +67,7 @@ func Set() *lambda.Lambda {
         KrudMiddleWares: []echo.MiddlewareFunc{
             crudlogger.MW(),
             notify.MW(),
-            arcGIS.MW(caller.GetMODEL, gridCaller.GetMODEL),
+           // arcGIS.MW(caller.GetMODEL, gridCaller.GetMODEL),
         },
         //Back-End permission validation
         KrudWithPermission: true,
@@ -87,8 +87,8 @@ func Set() *lambda.Lambda {
     */
     crudlogger.Set(lambda.Echo)
     notify.Set(lambda.Echo)
-    arcGIS.Set(lambda.Echo)
-    dataanalytic.Set(lambda.Echo)
+    //arcGIS.Set(lambda.Echo)
+    //dataanalytic.Set(lambda.Echo)
     chart.Set(lambda.Echo)
     moqup.Set(lambda.Echo)
 
