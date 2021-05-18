@@ -16,6 +16,7 @@ require (
 //	github.com/lambda-platform/arcGIS v0.0.1
 	github.com/lambda-platform/graphql v0.0.1
 //	github.com/lambda-platform/dataanalytic v0.0.1
+	github.com/lambda-platform/datasource v0.0.1
 	github.com/lambda-platform/chart v0.0.1
 	github.com/lambda-platform/moqup v0.0.1
 )
@@ -27,6 +28,7 @@ replace github.com/lambda-platform/puzzle v0.0.1 => ../../go/puzzle
 replace github.com/lambda-platform/krud v0.0.1 => ../../go/krud
 replace github.com/lambda-platform/dataform v0.0.1 => ../../go/dataform
 replace github.com/lambda-platform/datagrid v0.0.1 => ../../go/datagrid
+replace github.com/lambda-platform/datasource v0.0.1 => ../../go/datasource
 
 //PRO MODULES
 replace github.com/lambda-platform/crudlogger v0.0.1 => ../../go/crudlogger
