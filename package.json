@@ -1,6 +1,6 @@
 {
     "name": "@lambda-platform/cli",
-    "version": "0.0.20",
+    "version": "0.0.21",
     "description": "lambda cli",
     "main": "./generators/app/index.js",
     "keywords": [
