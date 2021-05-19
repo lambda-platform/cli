@@ -44,7 +44,7 @@ class LambdaCLI {
         switch (this._args[0]) {
             case 'c':
             case 'create':
-                return this.generate(this._args.slice(1), this._options, false);
+                return this.generate(this._args.slice(1), this._options, true);
             case 'pro':
             case 'create-pro':
                 return this.generate(this._args.slice(1), this._options, true);

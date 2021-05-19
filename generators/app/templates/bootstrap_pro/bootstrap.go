@@ -18,7 +18,7 @@ import (
     	| Graphql
     	|----------------------------------------------
     */
-    //"<%= projectName %>/app/graph"
+    "<%= projectName %>/app/graph"
     /*
     	|----------------------------------------------
     	| PRO MODULES
@@ -78,7 +78,7 @@ func Set() *lambda.Lambda {
     	| Graphql
     	|----------------------------------------------
     */
-    //graph.Set(lambda.Echo)
+    graph.Set(lambda.Echo)
 
     /*
     	|----------------------------------------------
