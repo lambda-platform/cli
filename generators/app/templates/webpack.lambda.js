@@ -26,7 +26,7 @@ mix.webpackConfig({
             path.resolve(`${lambdaRoot}/krud/`, 'node_modules'),
             path.resolve(`${lambdaRoot}/moqup/`, 'node_modules'),
             path.resolve(`${lambdaRoot}/page/`, 'node_modules'),
-            path.resolve(`${lambdaRoot}/puzzle/`, 'node_modules'),
+            path.resolve(`${lambdaRoot}/adminmodule/`, 'node_modules'),
             path.resolve(`${lambdaRoot}/template/`, 'node_modules'),
             path.resolve(`${lambdaRoot}/chart/`, 'node_modules'),
             path.resolve(`${lambdaRoot}/notify/`, 'node_modules'),
@@ -93,8 +93,8 @@ const compileModules = () => {
     mix.sass("assets/admin/scss/style.scss", "public/assets/admin/css/app.css");
 
     mix
-        .js(`${lambdaRoot}/puzzle/src/index.js`, `public/assets/lambda/js/puzzle.js`).vue()
-        .sass(`${lambdaRoot}/puzzle/src/scss/style.scss`, `public/assets/lambda/css/puzzle.css`)
+        .js(`${lambdaRoot}/adminmodule/src/index.js`, `public/assets/lambda/js/adminmodule.js`).vue()
+        .sass(`${lambdaRoot}/adminmodule/src/scss/style.scss`, `public/assets/lambda/css/adminmodule.css`)
 
         .js(`${lambdaRoot}/agent/src/index.js`, `public/assets/lambda/js/agent.js`).vue()
         .sass(`${lambdaRoot}/agent/src/scss/agent.scss`, `public/assets/lambda/css/agent.css`)
@@ -125,10 +125,7 @@ const compileModules = () => {
          .js(`${lambdaRoot}/chart/src/index.js`, "public/assets/lambda/js/chart.js").vue()
          .sass(`${lambdaRoot}/chart/src/scss/style.scss`, "public/assets/lambda/css/chart.css")
 
-        .js(`${lambdaRoot}/notify/src/index.js`, `public/assets/lambda/js/notification.js`).vue()
 
-        // .js("@lambda/logger/assets/index.js", "public/assets/lambda/logger.js")
-        // .sass("@lambda/logger/assets/scss/logger.scss", "public/assets/lambda/logger.css")
 
 
 

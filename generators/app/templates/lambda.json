@@ -38,10 +38,6 @@
         {
             "role_id": 1,
             "url": "/lambda/puzzle"
-        },
-        {
-            "role_id": 2,
-            "url": "/admin"
         }
     ],
     "user_data_fields": [

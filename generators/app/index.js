@@ -148,6 +148,11 @@ class LambdaGo extends Generator {
                 tmplContext
             );
             this.fs.copyTpl(
+                this.templatePath('go.sum'),
+                path.join(srcDir, 'go.sum'),
+                tmplContext
+            );
+            this.fs.copyTpl(
                 this.templatePath('start.sh_pro'),
                 path.join(srcDir, 'start.sh'),
                 tmplContext

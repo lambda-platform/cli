@@ -13,6 +13,7 @@ import (
     	|----------------------------------------------
     */
     "github.com/lambda-platform/lambda"
+        "github.com/lambda-platform/adminmodule"
     /*
     	|----------------------------------------------
     	| Graphql
@@ -24,10 +25,10 @@ import (
     	| PRO MODULES
     	|----------------------------------------------
     */
-    "github.com/lambda-platform/crudlogger"
+    //"github.com/lambda-platform/crudlogger"
     //"github.com/lambda-platform/dataanalytic"
     "github.com/lambda-platform/moqup"
-    "github.com/lambda-platform/notify"
+    //"github.com/lambda-platform/notify"
     /*
     	|----------------------------------------------
     	| App
@@ -65,8 +66,8 @@ func Set() *lambda.Lambda {
         	|----------------------------------------------
         */
         KrudMiddleWares: []echo.MiddlewareFunc{
-            crudlogger.MW(),
-            notify.MW(),
+            //crudlogger.MW(),
+            //notify.MW(),
            // arcGIS.MW(caller.GetMODEL, gridCaller.GetMODEL),
         },
         //Back-End permission validation
@@ -79,14 +80,14 @@ func Set() *lambda.Lambda {
     	|----------------------------------------------
     */
     graph.Set(lambda.Echo)
-
+    adminmodule.Set(lambda.Echo, lambda.ModuleName, lambda.GetGridMODEL)
     /*
     	|----------------------------------------------
     	| PRO MODULES
     	|----------------------------------------------
     */
-    crudlogger.Set(lambda.Echo)
-    notify.Set(lambda.Echo)
+    //crudlogger.Set(lambda.Echo)
+    //notify.Set(lambda.Echo)
     //arcGIS.Set(lambda.Echo)
     //dataanalytic.Set(lambda.Echo)
     chart.Set(lambda.Echo)
