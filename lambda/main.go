@@ -112,10 +112,9 @@ func DownloadGStarter() error{
 
 func UnZipLambdaCodes() error{
 
-	_, fileName, _, _ := runtime.Caller(0)
+	dir, _ := os.Getwd()
 
-
-	var dest string = filepath.Dir(fileName)
+	var dest string = dir
 
 	fmt.Println(dest)
 
