@@ -5,49 +5,138 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	humanize "github.com/dustin/go-humanize"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
-	humanize "github.com/dustin/go-humanize"
 	//"time"
 )
 
 func main() {
 	var showVersion bool
-	var createApp bool
+	var showHelp bool
+	var key string
+
 //
 	flag.BoolVar(&showVersion, "version", false, "Print version information.")
 	flag.BoolVar(&showVersion, "v", false, "Print version information.")
-	flag.BoolVar(&createApp, "create", false, "Create Lambda project.")
-	flag.BoolVar(&createApp, "c", false, "Create Lambda project.")
+	flag.BoolVar(&showHelp, "help", false, "Print version information.")
+	flag.BoolVar(&showHelp, "h", false, "Print version information.")
+	flag.StringVar(&key, "k", "", "Lambda project key.")
+	flag.StringVar(&key, "key", "", "Lambda project key.")
+
 	flag.Parse()
 
 	// Show version and exit
 	if showVersion {
 		fmt.Println("Version 1.0.0")
 		os.Exit(0)
-	}
-	if(createApp){
-		err := DownloadGStarter()
+	} else if showHelp {
+		ShowHelp()
+	} else {
+		args := flag.Args()
 
-		if(err != nil){
-			fmt.Println(err)
-		} else {
-			fmt.Println("\nDownload Completed")
+		if(len(args) >= 1){
+			var command string = flag.Args()[0]
+
+
+
+			if(command == "c" || command == "create"){
+				if(len(args) >= 2){
+					var projectName string = flag.Args()[1]
+					dir, _ := os.Getwd()
+					dest := dir+"/"+projectName
+					if _, err := os.Stat(dest); os.IsNotExist(err) {
+						fmt.Println("Creating: "+projectName)
+						os.MkdirAll(dest, 0755)
+
+						err := DownloadGStarter(dest)
+
+						if(err != nil){
+							fmt.Println(err)
+						} else {
+							fmt.Println("\nDownload Completed")
+						}
+						errUnZip := UnZipLambdaCodes(dest)
+						if(errUnZip != nil){
+							fmt.Println(errUnZip)
+						}
+
+						if(key != ""){
+							UpdateProjectKey(dest, key)
+						}
+
+					} else {
+						fmt.Println("Project already exist in: "+dir)
+					}
+
+				} else {
+					fmt.Println("Please insert project name")
+				}
+
+			} else {
+				ShowHelp()
+				fmt.Println("Unknown command: "+command)
+			}
+
+
 		}
-		errUnZip := UnZipLambdaCodes()
-		if(errUnZip != nil){
-			fmt.Println(errUnZip)
-		}
+
+
+
+
+	}
+
+}
+
+func UpdateProjectKey(dest string, key string)  {
+	lambdaConfig, _ := ioutil.ReadFile(dest + "/lambda.json")
+	lambdaConfigContent := strings.ReplaceAll(string(lambdaConfig), "\"project_key\": \"\"", "\"project_key\": \""+key+"\"")
+	WriteFile(lambdaConfigContent, dest + "/lambda.json")
+}
+func WriteFile(fileContent string, path string) {
+
+	f, err := os.Create(path)
+	if err != nil {
+		panic(err)
+	}
+
+	l2, err := f.WriteString(string(fileContent))
+	if err != nil {
+		panic(err)
+		panic(l2)
+		f.Close()
+	}
+	err = f.Close()
+	if err != nil {
+		panic(err)
 	}
 }
 
-// WriteCounter counts the number of bytes written to it. It implements to the io.Writer interface
-// and we can pass this into io.TeeReader() which will report progress on each write cycle.
 type WriteCounter struct {
 	Total uint64
+}
+
+func ShowHelp()  {
+	help:= fmt.Sprintf(`Usage: lambda <comman> [options]
+
+Options:
+-v, --version                      output the version number
+-h, --help                         output usage information
+-k, --key                          project key
+
+Commands:
+[options] create <app-name>        create a new project
+[options] c <app-name>             create a new project
+
+Examples:
+lambda create my-app
+lambda -key=<project-key> create my-app 
+`)
+	fmt.Println(help)
 }
 
 func (wc *WriteCounter) Write(p []byte) (int, error) {
@@ -66,11 +155,11 @@ func (wc WriteCounter) PrintProgress() {
 	// We use the humanize package to print the bytes in a meaningful way (e.g. 10 MB)
 	fmt.Printf("\rDownloading... %s complete", humanize.Bytes(wc.Total))
 }
-func DownloadGStarter() error{
+func DownloadGStarter(dest string) error{
 	url := "https://lambda.cloud.mn/starter.zip"
 	fmt.Println("Download Started")
 	// Create the file
-	out, err := os.Create("lambda.zip")
+	out, err := os.Create(dest+"/lambda.zip")
 	if err != nil {
 
 		return err
@@ -107,17 +196,10 @@ func DownloadGStarter() error{
 
 	return err
 }
+func UnZipLambdaCodes(dest string) error{
 
 
-func UnZipLambdaCodes() error{
-
-	dir, _ := os.Getwd()
-
-	var dest string = dir
-
-	fmt.Println(dest)
-
-	var src string = "lambda.zip"
+	var src string = dest+"/"+"lambda.zip"
 
 
 		var filenames []string
@@ -171,12 +253,14 @@ func UnZipLambdaCodes() error{
 				return  err
 			}
 		}
+
+		e := os.Remove(src)
+		if e != nil {
+			return e
+		}
+
+
 		return nil
-
-
-
-
-
 
 
 }
