@@ -15,3 +15,5 @@ go 17
 go install github.com/lambda-platform/cli/lambda@latest
 
 go install github.com/lambda-platform/cli/lambda-micro@latest
+
+go install github.com/lambda-platform/cli/lambda-micro-client@latest
