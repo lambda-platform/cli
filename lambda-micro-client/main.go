@@ -133,8 +133,8 @@ Commands:
 [options] c <app-name>             create a new project
 
 Examples:
-lambda-micro create my-app
-lambda-micro -key=<project-key> create my-app 
+lambda-micro-client create my-app
+lambda-micro-client -key=<project-key> create my-app 
 `)
 	fmt.Println(help)
 }
@@ -156,7 +156,7 @@ func (wc WriteCounter) PrintProgress() {
 	fmt.Printf("\rDownloading... %s complete", humanize.Bytes(wc.Total))
 }
 func DownloadGStarter(dest string) error{
-	url := "https://lambda.cloud.mn/microservice.zip"
+	url := "https://lambda.cloud.mn/microservice-client.zip"
 	fmt.Println("Download Started")
 	// Create the file
 	out, err := os.Create(dest+"/lambda.zip")
